@@ -17,7 +17,9 @@ class SiameseNetwork(Chain):
         )
 
     def forward_once(self, x_data, train=True):
-        x = Variable(x_data, volatile=not train)
+        chainer.config.train = train
+
+        x = Variable(x_data)
 
         h = F.max_pooling_2d(self.conv1(x), ksize=2, stride=2)
         h = F.max_pooling_2d(self.conv2(h), ksize=2, stride=2)
@@ -28,8 +30,10 @@ class SiameseNetwork(Chain):
         return y
 
     def forward(self, x0, x1, label, train=True):
+        chainer.config.train = train
+
         y0 = self.forward_once(x0, train)
         y1 = self.forward_once(x1, train)
-        label = Variable(label, volatile=not train)
+        label = Variable(label)
 
         return contrastive(y0, y1, label)
