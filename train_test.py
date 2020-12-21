@@ -7,7 +7,10 @@ if 'linux' in sys.platform:
     matplotlib.use('Agg')
 import argparse
 import numpy as np
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except:
+    import pickle
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_mldata
 from chainer import cuda, optimizers
