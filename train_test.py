@@ -12,14 +12,14 @@ try:
 except:
     import pickle
 import matplotlib.pyplot as plt
-from sklearn.datasets import fetch_mldata
+from sklearn.datasets import fetch_openml
 from chainer import cuda, optimizers
 from SiameseNetwork import SiameseNetwork
 
 
 def get_data():
     # data preparation
-    mnist = fetch_mldata('MNIST original')
+    mnist = fetch_openml("mnist_784", version=1)
     data = mnist['data'].astype(np.float32)
     label = mnist['target'].astype(np.int32)
     N = 60000  # of training data
