@@ -1,17 +1,19 @@
+import chainer
 import chainer.functions as F
-from chainer import Variable, FunctionSet
+import chainer.links as L
+from chainer import Variable, Chain
 from contrastive import contrastive
 
 
-class SiameseNetwork(FunctionSet):
+class SiameseNetwork(Chain):
 
     def __init__(self):
         super(SiameseNetwork, self).__init__(
-            conv1=F.Convolution2D(1, 20, ksize=5, stride=1),
-            conv2=F.Convolution2D(20, 50, ksize=5, stride=1),
-            fc3=F.Linear(800, 500),
-            fc4=F.Linear(500, 10),
-            fc5=F.Linear(10, 2),
+            conv1=L.Convolution2D(1, 20, ksize=5, stride=1),
+            conv2=L.Convolution2D(20, 50, ksize=5, stride=1),
+            fc3=L.Linear(800, 500),
+            fc4=L.Linear(500, 10),
+            fc5=L.Linear(10, 2),
         )
 
     def forward_once(self, x_data, train=True):
