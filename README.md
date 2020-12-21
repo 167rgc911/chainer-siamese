@@ -3,7 +3,7 @@ chainer-siamese
 
 # Requirement
 
-- [Chainer](https://github.com/pfnet/chainer)
+- [Chainer](https://github.com/pfnet/chainer) (modified to chainer 7.7)
 
 # Train
 
