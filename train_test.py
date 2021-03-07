@@ -66,6 +66,7 @@ def train(args, train_data, train_label, model, optimizer):
             x0_batch = xp.asarray(x0_batch, dtype=np.float32)
             x1_batch = xp.asarray(x1_batch, dtype=np.float32)
 
+            model.cleargrads()
             loss = model.forward(x0_batch, x1_batch, label)
             loss.backward()
             optimizer.update()
