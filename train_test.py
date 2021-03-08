@@ -135,5 +135,5 @@ if __name__ == '__main__':
         pickle.dump(model, open('model_{}.pkl'.format(args.epoch), 'wb'), -1)
     else:
         train_data, train_label, test_data, test_label = get_data()
-        model = pickle.load(open('model_{}.pkl'.format(args.epoch)))
+        model = pickle.load(open('model_{}.pkl'.format(args.epoch), 'rb'))
         test(args, model, test_data, test_label)
